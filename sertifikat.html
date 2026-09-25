@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Подарочный сертификат — Гедония</title>
+  <meta name="description" content="Подарочный сертификат на дегустационный вечер Гедонии в Иванове. 3 500 руб." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <a class="logo" href="index.html"><img src="img/logo/logo-header.png" alt="Гедония" /></a>
+      <nav class="nav">
+        <a href="uslugi.html">Наши услуги</a>
+        <a class="is-active" href="sertifikat.html">Подарочные сертификаты</a>
+        <a href="#order" data-order>Заказать</a>
+        <a href="index.html#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Главная</a> · Сертификат</p>
+      <h1>Подарочный сертификат</h1>
+      <p class="sub">Подарите не очередную вещь — а вечер, который хочется прожить: камерную дегустацию, вкус, лёгкую компанию и спокойствие в вине после. Получатель сам выбирает удобную дату из открытых вечеров Гедонии.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap" style="max-width:560px">
+      <article class="card">
+        <img src="img/bubbles.jpg" alt="Сертификат на дегустационный вечер" />
+        <div class="body">
+          <p class="meta">Дегустационные мероприятия</p>
+          <h2 style="font-size:26px;margin-bottom:8px">На дегустационный вечер</h2>
+          <p>Один билет на открытый вечер Гедонии. Сейчас в афише — «Пузырьки»: новые знакомства, закуски, сочетания и погружение в мир виноделия.</p>
+          <ul class="inc">
+            <li>Номинал = билет 3 500 руб.</li>
+            <li>Срок 3 месяца с даты покупки</li>
+            <li>Электронный сертификат в день оплаты</li>
+            <li>18+</li>
+          </ul>
+          <p class="price">3 500 руб.</p>
+          <a class="msg accent" style="margin-top:14px;align-self:flex-start" href="#order" data-order data-service="sertifikat">Заказать сертификат</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>Гедония · сертификат · 18+</span>
+      <a href="tel:+79106913110">+7 910 691-31-10</a>
+    </div>
+  </footer>
+
+  <div class="order-backdrop" id="order-backdrop" aria-hidden="true">
+    <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-title">
+      <button type="button" class="order-close" aria-label="Закрыть">&times;</button>
+      <h2 id="order-title">Заказать</h2>
+      <p class="sub">Оставьте данные — откроется WhatsApp с заявкой.</p>
+      <form class="order-form" id="order-form">
+        <label>Имя <span class="req">*</span>
+          <input type="text" name="name" required autocomplete="name" placeholder="Как к Вам обращаться" />
+        </label>
+        <label>Телефон <span class="req">*</span>
+          <input type="tel" name="phone" required autocomplete="tel" placeholder="+7 …" />
+        </label>
+        <label>Услуга <span class="req">*</span>
+          <select name="service" required>
+            <option value="">Выберите услугу</option>
+            <option value="vyezd-6">Выезд · до 6 гостей · 14 900 ₽</option>
+            <option value="vyezd-8">Выезд · до 8 гостей · 16 900 ₽</option>
+            <option value="vecher">«Пузырьки» · 3 500 ₽</option>
+            <option value="sertifikat">Сертификат на вечер · 3 500 ₽</option>
+          </select>
+        </label>
+        <div class="row-2">
+          <label>Гостей
+            <input type="number" name="guests" min="1" max="20" placeholder="—" />
+          </label>
+          <label>Дата
+            <input type="text" name="date" placeholder="Например, 31 окт." />
+          </label>
+        </div>
+        <label>Комментарий
+          <textarea name="note" placeholder="Повод, пожелания"></textarea>
+        </label>
+        <div class="actions">
+          <button type="submit">Отправить заявку</button>
+          <p class="hint">Нажмите «Отправить» в WhatsApp — и мы получим сообщение</p>
+        </div>
+        <p class="order-status" id="order-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/order.js"></script>
+</body>
+
+</html>

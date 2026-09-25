@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Услуги — Гедония</title>
+  <meta name="description" content="Выездные дегустации и дегустационные мероприятия Гедонии в Иванове." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <a class="logo" href="index.html"><img src="img/logo/logo-header.png" alt="Гедония" /></a>
+      <nav class="nav">
+        <a class="is-active" href="uslugi.html">Наши услуги</a>
+        <a href="sertifikat.html">Подарочные сертификаты</a>
+        <a href="#order" data-order>Заказать</a>
+        <a href="index.html#contacts">Контакты</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Главная</a> · Услуги</p>
+      <h1>Наши услуги</h1>
+      <p class="sub">Выберите формат для себя.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap grid-2">
+      <a class="card" href="vyezd.html">
+        <img src="img/table.jpg" alt="Выездная дегустация" />
+        <div class="body">
+          <h2 style="font-size:28px;margin-bottom:8px">Выездные дегустации</h2>
+          <p>Камерная дегустация у Вас дома или на Вашей территории. Готовая программа на выбор для дня рождения, девичника, встречи друзей и других Ваших мероприятий.</p>
+          <p class="price">от 14 900 руб.</p>
+          <span class="msg accent" style="margin-top:16px;align-self:flex-start">Открыть →</span>
+        </div>
+      </a>
+      <a class="card" href="vecher.html">
+        <img src="img/bubbles.jpg" alt="Дегустационное мероприятие" />
+        <div class="body">
+          <h2 style="font-size:28px;margin-bottom:8px">Дегустационные мероприятия</h2>
+          <p>Дегустация в центре города: новые знакомства, вкусные закуски, идеальные сочетания, погружение в мир виноделия и гедонии, лёгкий и приятный досуг. Сейчас в афише «Пузырьки» — 31 октября.</p>
+          <p class="price">3 500 руб.</p>
+          <span class="msg accent" style="margin-top:16px;align-self:flex-start">Открыть →</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>Гедония · 18+</span>
+      <a href="tel:+79106913110">+7 910 691-31-10</a>
+    </div>
+  </footer>
+
+  <div class="order-backdrop" id="order-backdrop" aria-hidden="true">
+    <div class="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-title">
+      <button type="button" class="order-close" aria-label="Закрыть">&times;</button>
+      <h2 id="order-title">Заказать</h2>
+      <p class="sub">Оставьте данные — откроется WhatsApp с заявкой.</p>
+      <form class="order-form" id="order-form">
+        <label>Имя <span class="req">*</span>
+          <input type="text" name="name" required autocomplete="name" placeholder="Как к Вам обращаться" />
+        </label>
+        <label>Телефон <span class="req">*</span>
+          <input type="tel" name="phone" required autocomplete="tel" placeholder="+7 …" />
+        </label>
+        <label>Услуга <span class="req">*</span>
+          <select name="service" required>
+            <option value="">Выберите услугу</option>
+            <option value="vyezd-6">Выезд · до 6 гостей · 14 900 ₽</option>
+            <option value="vyezd-8">Выезд · до 8 гостей · 16 900 ₽</option>
+            <option value="vecher">«Пузырьки» · 3 500 ₽</option>
+            <option value="sertifikat">Сертификат на вечер · 3 500 ₽</option>
+          </select>
+        </label>
+        <div class="row-2">
+          <label>Гостей
+            <input type="number" name="guests" min="1" max="20" placeholder="—" />
+          </label>
+          <label>Дата
+            <input type="text" name="date" placeholder="Например, 31 окт." />
+          </label>
+        </div>
+        <label>Комментарий
+          <textarea name="note" placeholder="Повод, пожелания"></textarea>
+        </label>
+        <div class="actions">
+          <button type="submit">Отправить заявку</button>
+          <p class="hint">Нажмите «Отправить» в WhatsApp — и мы получим сообщение</p>
+        </div>
+        <p class="order-status" id="order-status" role="status"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/order.js"></script>
+</body>
+
+</html>
