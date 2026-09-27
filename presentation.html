@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Гедония · камерные винные вечера</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --deep: #2F4A45;
+      --ink: #3D524E;
+      --muted: #5F736E;
+      --foam: #E8F4F6;
+      --band: #D6EBEE;
+      --line: #C8DEE2;
+      --accent: #7EB8A8;
+      --soft: #C8E6DB;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Outfit, system-ui, sans-serif;
+      background: var(--foam);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .toolbar {
+      position: sticky; top: 0; z-index: 5;
+      background: color-mix(in srgb, var(--foam) 92%, #fff);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 18px;
+      display: flex; gap: 10px; flex-wrap: wrap;
+      align-items: center; justify-content: space-between;
+    }
+    .toolbar span { font-size: 13px; color: var(--muted); }
+    .toolbar button, .toolbar a.btn {
+      font: inherit; font-weight: 600; font-size: 13px; cursor: pointer;
+      border: none; background: var(--accent); color: #fff;
+      padding: 8px 14px; border-radius: 999px; text-decoration: none;
+      display: inline-flex; align-items: center;
+    }
+    .deck { max-width: 960px; margin: 0 auto; padding: 28px 18px 80px; }
+    .slide {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 44px 44px 40px;
+      margin-bottom: 18px;
+      min-height: 540px;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover {
+      background: linear-gradient(150deg, var(--band), var(--foam) 50%, var(--white));
+      justify-content: center;
+    }
+    .eyebrow {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+    }
+    h1 {
+      font-size: clamp(34px, 5vw, 48px); color: var(--deep);
+      font-weight: 600; letter-spacing: -0.03em; margin-bottom: 14px; line-height: 1.15;
+    }
+    h2 {
+      font-size: clamp(28px, 4vw, 36px); color: var(--deep);
+      font-weight: 600; letter-spacing: -0.02em; margin-bottom: 12px;
+    }
+    h3 { font-size: 18px; color: var(--deep); font-weight: 600; margin: 18px 0 8px; }
+    .lead { font-size: 19px; color: var(--muted); max-width: 34em; margin-bottom: 22px; }
+    .sub { color: var(--muted); margin-bottom: 14px; font-size: 16px; }
+    .pill {
+      display: inline-block; background: var(--soft); color: var(--deep);
+      font-size: 13px; font-weight: 600; padding: 6px 12px; border-radius: 999px; margin: 0 6px 8px 0;
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+    .card {
+      background: var(--foam); border: 1px solid var(--line);
+      border-radius: 16px; padding: 18px 18px 16px;
+    }
+    .card strong { color: var(--deep); display: block; font-size: 17px; margin-bottom: 6px; }
+    .card p { font-size: 14px; color: var(--muted); margin: 0; }
+    .price {
+      font-size: 28px; font-weight: 600; color: var(--accent); margin-top: 10px;
+    }
+    .price small { display: block; font-size: 13px; color: var(--muted); font-weight: 500; margin-top: 2px; }
+    ul { padding-left: 1.15em; margin: 8px 0 12px; }
+    li { margin: 7px 0; color: var(--ink); }
+    .quote {
+      font-size: 20px; color: var(--deep); font-weight: 500;
+      border-left: 3px solid var(--accent); padding-left: 16px; margin: 18px 0;
+    }
+    .footer-note { margin-top: auto; padding-top: 28px; font-size: 13px; color: var(--muted); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .cta {
+      display: inline-flex; align-items: center; justify-content: center;
+      background: var(--accent); color: #fff; font-weight: 600; font-size: 14px;
+      padding: 12px 18px; border-radius: 999px; text-decoration: none;
+    }
+    .cta.ghost {
+      background: var(--white); color: var(--deep); border: 1px solid var(--line);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 15px; margin-top: 12px; }
+    th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: var(--deep); color: #fff; font-weight: 600; }
+    tr:nth-child(even) td { background: var(--foam); }
+    @media (max-width: 720px) {
+      .slide { padding: 28px 20px; min-height: 0; }
+      .grid, .grid-3 { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .toolbar { display: none; }
+      .slide { break-after: page; border: none; min-height: 0; }
+      body { background: #fff; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <span>Гедония · презентация для гостей · Печать → PDF</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn" href="https://hedonilife.github.io/hedonia/" target="_blank" rel="noopener">Сайт</a>
+      <button type="button" onclick="window.print()">Скачать PDF</button>
+    </div>
+  </div>
+
+  <div class="deck">
+    <!-- 1 -->
+    <section class="slide cover">
+      <p class="eyebrow">Гедония · Иваново · 18+</p>
+      <h1>Досуг для души, разума<br />и Ваших рецепторов.</h1>
+      <p class="lead">Камерные дегустации как вид досуга: Вы пробуете, сравниваете, находите свои вкусы и проводите вечер в приятной компании.</p>
+      <div>
+        <span class="pill">Выезд к Вам</span>
+        <span class="pill">Вечера в городе</span>
+        <span class="pill">Подарочный сертификат</span>
+      </div>
+      <p class="footer-note">hedonilife.github.io/hedonia · +7 910 691-31-10</p>
+    </section>
+
+    <!-- 2 -->
+    <section class="slide">
+      <p class="eyebrow">Кто мы</p>
+      <h2>Гедония</h2>
+      <p class="lead">Команда, которая организует винные вечера. За нами — годы в туризме, десятки посещённых виноделен и постоянное обучение.</p>
+      <p class="quote">Наши дегустации — вкусы и ароматы, закуски, истории и лёгкая атмосфера. У нас отдыхают и находят своё.</p>
+      <div class="grid">
+        <div class="card">
+          <strong>Что Вы уносите</strong>
+          <p>Уверенный выбор в магазине, знания о вкусе и сочетаниях, вечер, который хочется вспомнить.</p>
+        </div>
+        <div class="card">
+          <strong>Как устроен вечер</strong>
+          <p>Тема · дегустационные пробы · закуски-пары · спокойный разговор. Без суеты большого банкета.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 -->
+    <section class="slide">
+      <p class="eyebrow">Форматы</p>
+      <h2>Выберите свой вечер</h2>
+      <div class="grid">
+        <div class="card">
+          <strong>Выездные дегустации</strong>
+          <p>У Вас дома или на Вашей территории. Готовая программа на выбор для дня рождения, девичника, встречи друзей.</p>
+          <p class="price">от 14 900 ₽<small>~60 минут · до 6 или до 8 гостей</small></p>
+        </div>
+        <div class="card">
+          <strong>Дегустационные мероприятия</strong>
+          <p>Вечер в центре города: знакомства, закуски, сочетания, погружение в мир виноделия. Сейчас в афише — «Пузырьки».</p>
+          <p class="price">3 500 ₽<small>билет · 31 октября · ~2 часа</small></p>
+        </div>
+      </div>
+      <p class="sub" style="margin-top:18px">Подарочный сертификат — на открытый вечер, 3 500 ₽.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="slide">
+      <p class="eyebrow">Программы выезда</p>
+      <h2>Три темы на выбор</h2>
+      <div class="grid-3">
+        <div class="card">
+          <strong>Игристое погружение</strong>
+          <p>Три дороги пузырька: резервуар, классика в бутылке, живой стиль. Поймёте, за что платите в игристом.</p>
+        </div>
+        <div class="card">
+          <strong>Своё вино</strong>
+          <p>Как читать бутылку и выбрать то, что откликается именно Вам — без паники на полке.</p>
+        </div>
+        <div class="card">
+          <strong>Стол к вину</strong>
+          <p>Правила пар: что поставить дома, чтобы вино стало вкуснее, а стол — красивым.</p>
+        </div>
+      </div>
+      <h3>В выезд входит</h3>
+      <ul>
+        <li>Ведущая и готовая программа</li>
+        <li>Три дегустационные пробы</li>
+        <li>Закуски к каждой пробе</li>
+        <li>Вода и бокалы на вечер</li>
+        <li>Памятка: что пробовали и как выбрать в магазине</li>
+      </ul>
+    </section>
+
+    <!-- 5 -->
+    <section class="slide">
+      <p class="eyebrow">Стоимость выезда</p>
+      <h2>Прозрачный прайс</h2>
+      <table>
+        <thead>
+          <tr><th>Пакет</th><th>Гостей</th><th>Цена</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Выездная дегустация</td><td>до 6</td><td><strong>14 900 ₽</strong></td></tr>
+          <tr><td>Выездная дегустация</td><td>до 8</td><td><strong>16 900 ₽</strong></td></tr>
+          <tr><td>Выезд в область</td><td>—</td><td>по договорённости</td></tr>
+        </tbody>
+      </table>
+      <p class="sub" style="margin-top:16px">Не входит: полный ужин, безлимит, продажа бутылок навынос. Мы проводим мастер-класс с дегустационными пробами и закусками.</p>
+      <p class="quote">Предоплата 50%. 18+.</p>
+    </section>
+
+    <!-- 6 -->
+    <section class="slide">
+      <p class="eyebrow">Афиша</p>
+      <h2>«Пузырьки» · 31 октября</h2>
+      <p class="lead">Открытый дегустационный вечер в центре города. Игристое, закуски, новые знакомства и лёгкий досуг.</p>
+      <div class="grid">
+        <div class="card">
+          <strong>Что будет</strong>
+          <p>Четыре пробы игристого, закуски-пары, вода, около двух часов в камерной компании.</p>
+        </div>
+        <div class="card">
+          <strong>Билет</strong>
+          <p class="price" style="margin-top:6px">3 500 ₽<small>выкуп вечера — 28 000 ₽</small></p>
+        </div>
+      </div>
+      <p class="footer-note">Место зала уточняем при записи. Количество мест ограничено.</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="slide">
+      <p class="eyebrow">Подарок</p>
+      <h2>Сертификат на вечер</h2>
+      <p class="lead">Подарите не вещь — а вечер, который хочется прожить. Получатель сам выбирает удобную дату из открытых вечеров Гедонии.</p>
+      <ul>
+        <li>Номинал = билет 3 500 ₽</li>
+        <li>Срок 3 месяца с даты покупки</li>
+        <li>Электронный сертификат в день оплаты</li>
+        <li>18+</li>
+      </ul>
+      <p class="price">3 500 ₽</p>
+    </section>
+
+    <!-- 8 -->
+    <section class="slide">
+      <p class="eyebrow">Как заказать</p>
+      <h2>Три шага</h2>
+      <div class="grid-3">
+        <div class="card"><strong>1. Напишите нам</strong><p>Сайт, WhatsApp, Telegram или MAX — формат и дата.</p></div>
+        <div class="card"><strong>2. Предоплата</strong><p>50% и подтверждение деталей вечера.</p></div>
+        <div class="card"><strong>3. Встречаемся</strong><p>Вы наслаждаетесь, мы ведём программу.</p></div>
+      </div>
+      <div class="cta-row">
+        <a class="cta" href="https://hedonilife.github.io/hedonia/#order" target="_blank" rel="noopener">Заказать на сайте</a>
+        <a class="cta ghost" href="https://wa.me/79106913110" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="cta ghost" href="tel:+79106913110">+7 910 691-31-10</a>
+      </div>
+      <p class="footer-note">Гедония · камерные винные вечера · Иваново · 18+</p>
+    </section>
+  </div>
+</body>
+</html>
